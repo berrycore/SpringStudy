@@ -6,9 +6,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MenuUi extends AbstractUiTemplate {
 	
 	private SelectTeamUi selectTeamUi;
+	private SelectUserAccountUi selectUserAccountUi;
 	
 	public void setSelectTeamUi(SelectTeamUi selectTeamUi) {
 		this.selectTeamUi = selectTeamUi;
+	}
+	
+	public void setSelectUserAccountUi(SelectUserAccountUi selectUserAccountUi) {
+		this.selectUserAccountUi = selectUserAccountUi;
 	}
 
 	@Override
@@ -17,13 +22,14 @@ public class MenuUi extends AbstractUiTemplate {
 		System.out.println(" 팀 관리 시스템");
 		System.out.println(" 1. 종료");
 		System.out.println(" 2. 팀 목록 보기");
+		System.out.println(" 3. User 정보 보기");
 		System.out.println("");
 		System.out.println("번호를 입력하고 Enter 키를 누르세요.");
 	}
 
 	@Override
 	protected int getMaxMenuNumber() {
-		return 2;
+		return 3;
 	}
 
 	@Override
@@ -40,6 +46,9 @@ public class MenuUi extends AbstractUiTemplate {
 			break;
 		case 2:
 			this.selectTeamUi.show();			
+			break;
+		case 3:
+			this.selectUserAccountUi.show();
 			break;
 		default:
 			break;

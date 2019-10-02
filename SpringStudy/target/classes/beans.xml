@@ -8,8 +8,7 @@
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
 		p:url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
 		p:username="hr"
-		p:password="hr"
-	>
+		p:password="hr" >
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
@@ -22,18 +21,25 @@
 	</bean>
 	
 	<bean id="teamDao" class="dao.impl.TeamDaoImpl"
-		p:session-ref="sqlSession"
-	>
+		p:session-ref="sqlSession" >
+	</bean>
+	
+	<bean id="userAccountDao" class="dao.impl.UserAccountDaoImpl"
+		p:session-ref="sqlSession" >
 	</bean>
 	
 	<bean id="selectTeamUi" class="ui.SelectTeamUi"
-		p:teamDao-ref="teamDao"
-	>
+		p:teamDao-ref="teamDao" >
+	</bean>
+	
+	<bean id="selectUserAccountUi" class="ui.SelectUserAccountUi"
+		p:userAccountDao-ref="userAccountDao">
+	
 	</bean>
 	
 	<bean id="menuUi" class="ui.MenuUi"
 		p:selectTeamUi-ref="selectTeamUi"
-	>
+		p:selectUserAccountUi-ref="selectUserAccountUi" >
 	</bean>
 
 </beans>

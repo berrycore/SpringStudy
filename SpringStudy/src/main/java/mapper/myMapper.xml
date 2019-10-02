@@ -4,7 +4,11 @@
 <mapper namespace="mapper.myMapper">
 	
 	<select id="getTeamList" resultType="model.Team">
-		select* from team
+		select * from team
+	</select>
+	
+	<select id="getUserAccountList" resultType="model.UserAccount">
+		select * from user_account
 	</select>
 
 </mapper>
