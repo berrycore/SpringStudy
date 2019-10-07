@@ -39,7 +39,7 @@ public class InsertPlayerUi extends AbstractUi {
 	
 	protected void showMenu(String wanted) {
 		System.out.println("****************************");
-		System.out.printf("%s 를 입력하고 Enter 를 누르세요", wanted);
+		System.out.printf("%s 를 입력하고 Enter 를 누르세요\n", wanted);
 	}
 	
 	protected void showTeamField(Player p) {
@@ -51,7 +51,7 @@ public class InsertPlayerUi extends AbstractUi {
 		}else if(NumberUtils.isNumber(id)) {
 			Team team = teamDao.getTeam(Integer.valueOf(id));
 			if( team == null ) {
-				System.out.printf("%s인 팀은 존재하지 않습니다", id);
+				System.out.printf("%s인 팀은 존재하지 않습니다\n", id);
 				showTeamField(p);
 			}else {
 				p.setTeam_id(Integer.valueOf(id));
@@ -69,7 +69,7 @@ public class InsertPlayerUi extends AbstractUi {
 		}else if(NumberUtils.isNumber(id)) {
 			p.setPlayer_id(Integer.valueOf(id));
 			playerDao.insertPlayer(p);
-			System.out.printf("팀 %s 에 %s 선수를 등록했습니다", t.getName(), p.getName());
+			System.out.printf("팀 %s 에 %s 선수를 등록했습니다\n", t.getName(), p.getName());
 		}
 	}
 
