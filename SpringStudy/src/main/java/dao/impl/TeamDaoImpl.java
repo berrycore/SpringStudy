@@ -21,4 +21,10 @@ public class TeamDaoImpl implements TeamDao {
 	public void setSession(SqlSession session) {
 		this.session = session;
 	}
+
+
+	@Override
+	public Team getTeam(Integer teamId) throws DataAccessException {
+		return session.selectOne("mapper.myMapper.getTeam", teamId);
+	}
 }

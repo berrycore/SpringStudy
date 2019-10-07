@@ -24,6 +24,10 @@
 		p:session-ref="sqlSession" >
 	</bean>
 	
+	<bean id="playerDao" class="dao.impl.PlayerDaoImpl" 
+		p:session-ref="sqlSession" >
+	</bean>
+	
 	<bean id="userAccountDao" class="dao.impl.UserAccountDaoImpl"
 		p:session-ref="sqlSession" >
 	</bean>
@@ -33,12 +37,16 @@
 	</bean>
 	
 	<bean id="selectUserAccountUi" class="ui.SelectUserAccountUi"
-		p:userAccountDao-ref="userAccountDao">
+		p:userAccountDao-ref="userAccountDao">	
+	</bean>
 	
+	<bean id="insertPlayerUi" class="ui.InsertPlayerUi"
+		p:playerDao-ref="playerDao" p:teamDao-ref="teamDao">
 	</bean>
 	
 	<bean id="menuUi" class="ui.MenuUi"
 		p:selectTeamUi-ref="selectTeamUi"
+		p:insertPlayerUi-ref="insertPlayerUi"
 		p:selectUserAccountUi-ref="selectUserAccountUi" >
 	</bean>
 
