@@ -18,5 +18,22 @@
 	<insert id="putPlayer" parameterType="model.Player">
 		insert into player (player_id, name, team_id) values(#{player_id}, #{name}, #{team_id})
 	</insert>
+	
+	<select id="getTeamPlayer" parameterType="Integer"
+			resultType="model.PlayerTeam">
+		select player_id, player.name as playerName,
+			team.team_id, team.name as teamName
+		from player, team
+		where player.team_id = team.team_id and
+				team.team_id = #{team_id}
+	</select>
+	<select id="getPlayerTeam" parameterType="Integer"
+			resultType="model.PlayerTeam">
+		select player_id, player.name as playerName,
+			team.team_id, team.name as teamName
+		from player, team
+		where player.team_id = team.team_id and
+				player_id = #{player_id}
+	</select>
 
 </mapper>

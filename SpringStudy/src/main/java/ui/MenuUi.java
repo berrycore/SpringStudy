@@ -8,6 +8,7 @@ public class MenuUi extends AbstractUiTemplate {
 	private SelectTeamUi selectTeamUi;
 	private SelectUserAccountUi selectUserAccountUi;
 	private InsertPlayerUi insertPlayerUi;
+	private SelectPlayerUi selectPlayerUi;
 	
 	public void setSelectTeamUi(SelectTeamUi selectTeamUi) {
 		this.selectTeamUi = selectTeamUi;
@@ -20,6 +21,10 @@ public class MenuUi extends AbstractUiTemplate {
 	public void setInsertPlayerUi(InsertPlayerUi insertPlayerUi) {
 		this.insertPlayerUi = insertPlayerUi;
 	}
+	
+	public void setSelectPlayerUi(SelectPlayerUi selectPlayerUi) {
+		this.selectPlayerUi = selectPlayerUi;
+	}
 
 	@Override
 	protected void showMenu() {
@@ -29,13 +34,14 @@ public class MenuUi extends AbstractUiTemplate {
 		System.out.println(" 2. 팀 목록 보기");
 		System.out.println(" 3. User 정보 보기");
 		System.out.println(" 4. 선수 등록");
+		System.out.println(" 5. 선수 목록");
 		System.out.println("");
 		System.out.println("번호를 입력하고 Enter 키를 누르세요.");
 	}
 
 	@Override
 	protected int getMaxMenuNumber() {
-		return 4;
+		return 5;
 	}
 
 	@Override
@@ -58,6 +64,9 @@ public class MenuUi extends AbstractUiTemplate {
 			break;
 		case 4: 
 			this.insertPlayerUi.show();
+			break;
+		case 5:
+			this.selectPlayerUi.show();
 			break;
 		default:
 			break;

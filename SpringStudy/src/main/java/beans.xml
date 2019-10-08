@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
@@ -44,10 +46,35 @@
 		p:playerDao-ref="playerDao" p:teamDao-ref="teamDao">
 	</bean>
 	
+	<bean id="deletePlayerUi" class="ui.DeletePlayerUi"
+		p:playerDao-ref="playerDao">
+	</bean>
+	
+	<bean id="updatePlayerUi" class="ui.UpdatePlayerUi"
+		p:playerDao-ref="playerDao"
+		p:teamDao-ref="teamDao">
+	</bean>
+	
+	<bean id="selectPlayerUi" class="ui.SelectPlayerUi"
+		p:deletePlayerUi-ref="deletePlayerUi"
+		p:playerDao-ref="playerDao"
+		p:updatePlayerUi-ref="updatePlayerUi"></bean>
+	
 	<bean id="menuUi" class="ui.MenuUi"
 		p:selectTeamUi-ref="selectTeamUi"
 		p:insertPlayerUi-ref="insertPlayerUi"
 		p:selectUserAccountUi-ref="selectUserAccountUi" >
 	</bean>
+	
+	<!-- advice -->
+	<bean id="myAdvice" class="aop.MyAdvice"></bean>
+	
+	<!-- aop -->
+	<aop:config>
+		<aop:aspect id="logAspect" ref="myAdvice">
+			<aop:pointcut expression="execution(* ui.*.*(..)) || execution(* dao.*.*(..))"  id="logPointcut"/>
+			<aop:before method="logBefore" pointcut-ref="logPointcut"/>
+		</aop:aspect>
+	</aop:config>
 
 </beans>

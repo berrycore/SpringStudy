@@ -5,6 +5,7 @@ public class Player {
 	private Integer player_id;
 	private String name;
 	private Integer team_id;
+	private Team team;
 	
 	public Integer getPlayer_id() {
 		return player_id;
@@ -24,6 +25,11 @@ public class Player {
 	public void setTeam_id(Integer team_id) {
 		this.team_id = team_id;
 	}
-	
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+	public Team getTeam() {
+		return team;
+	}
 	
 }
